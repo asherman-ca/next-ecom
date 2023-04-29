@@ -1,8 +1,8 @@
 'use client'
 
-// import { Session } from 'next-auth'
 import { signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type userType = {
 	name?: string | null | undefined
@@ -13,7 +13,9 @@ type userType = {
 const Nav = ({ user }: { user: userType | undefined }) => {
 	return (
 		<nav className='flex justify-between items-center py-8'>
-			<h1>styled</h1>
+			<Link href='/'>
+				<h1>Next-Ecom</h1>
+			</Link>
 			<ul className='flex items-center gap-12'>
 				<li>Products</li>
 				{!user && (
@@ -33,7 +35,6 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 							/>
 							<button onClick={() => signOut()}>Sign Out</button>
 						</li>
-						<li>Dashboard</li>
 					</>
 				)}
 			</ul>

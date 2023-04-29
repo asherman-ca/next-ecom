@@ -4,13 +4,21 @@ import Link from 'next/link'
 import { AddCartType } from '@/types/AddCartType'
 import formatPrice from '@/util/PriceFormat'
 
-const Product = ({ name, unit_amount, image, id }: AddCartType) => {
+const Product = ({
+	name,
+	unit_amount,
+	image,
+	id,
+	description,
+	metadata,
+}: AddCartType) => {
+	const { features } = metadata
+
 	return (
-		// <Link href={`/product/${id}`}>
 		<Link
 			href={{
 				pathname: `/product/${id}`,
-				query: { name, image, unit_amount, id },
+				query: { name, image, unit_amount, id, description, features },
 			}}
 		>
 			<div className='text-gray-700'>
