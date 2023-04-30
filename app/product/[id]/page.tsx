@@ -22,9 +22,6 @@ const page = async ({ searchParams }: SearchParamType) => {
 						{searchParams.unit_amount && formatPrice(searchParams.unit_amount)}
 					</p>
 				</div>
-				{/* <button className='text-white py-2 px-6 font-medium rounded-md bg-teal-700 mt-12'>
-					Add to cart
-				</button> */}
 				<AddCart {...searchParams} />
 			</div>
 		</div>
