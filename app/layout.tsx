@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 
 import Nav from './components/Nav'
+import Hydrate from './components/Hydrate'
 
 export const metadata = {
 	title: 'Create Next App',
@@ -15,13 +16,14 @@ export default async function RootLayout({
 	children: React.ReactNode
 }) {
 	const session = await getServerSession(authOptions)
-	console.log('SESSION', session)
 
 	return (
 		<html lang='en'>
 			<body className='px-48'>
-				<Nav user={session?.user} />
-				{children}
+				<Hydrate>
+					<Nav user={session?.user} />
+					{children}
+				</Hydrate>
 			</body>
 		</html>
 	)

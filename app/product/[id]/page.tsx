@@ -4,7 +4,6 @@ import { SearchParamType } from '@/types/SearchParamType'
 import formatPrice from '@/util/PriceFormat'
 
 const page = async ({ searchParams }: SearchParamType) => {
-	console.log('searchParams', searchParams)
 	return (
 		<div className='flex justify-between gap-24 p-12 text-gray-700'>
 			<Image
