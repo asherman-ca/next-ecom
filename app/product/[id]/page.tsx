@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import { SearchParamType } from '@/types/SearchParamType'
 import formatPrice from '@/util/PriceFormat'
+import AddCart from './AddCart'
 
 const page = async ({ searchParams }: SearchParamType) => {
 	return (
@@ -21,9 +22,10 @@ const page = async ({ searchParams }: SearchParamType) => {
 						{searchParams.unit_amount && formatPrice(searchParams.unit_amount)}
 					</p>
 				</div>
-				<button className='text-white py-2 px-6 font-medium rounded-md bg-teal-700 mt-12'>
+				{/* <button className='text-white py-2 px-6 font-medium rounded-md bg-teal-700 mt-12'>
 					Add to cart
-				</button>
+				</button> */}
+				<AddCart {...searchParams} />
 			</div>
 		</div>
 	)

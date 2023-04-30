@@ -1,20 +1,13 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-type CartItem = {
-	id: string
-	name: string
-	unit_amount: number
-	images?: string[]
-	description?: string
-	quantity: number
-}
+import { AddCartType } from './types/AddCartType'
 
 type CartState = {
 	isOpen: boolean
-	cart: CartItem[]
+	cart: AddCartType[]
 	toggleCart: () => void
-	addItem: (arg0: CartItem) => void
+	addProduct: (arg0: AddCartType) => void
+	removeProduct: (arg0: AddCartType) => void
 }
 
 export const useCartStore = create<CartState>()(
@@ -23,8 +16,45 @@ export const useCartStore = create<CartState>()(
 			cart: [],
 			isOpen: false,
 			toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
-			addItem: (item: CartItem) =>
-				set((state) => ({ cart: [...state.cart, item] })),
+			addProduct: (item) =>
+				set((state) => {
+					const existingItem = state.cart.find(
+						(cartItem) => cartItem.id === item.id
+					)
+					if (existingItem) {
+						const updatedCart = state.cart.map((cartItem) => {
+							if (cartItem.id === item.id) {
+								return { ...cartItem, quantity: cartItem.quantity! + 1 }
+							}
+							return cartItem
+						})
+						return { cart: updatedCart }
+					} else {
+						return { cart: [...state.cart, { ...item, quantity: 1 }] }
+					}
+				}),
+			removeProduct: (item) =>
+				set((state) => {
+					//Check if the item exists and remove quantity - 1
+					const existingItem = state.cart.find(
+						(cartItem) => cartItem.id === item.id
+					)
+					if (existingItem && existingItem.quantity! > 1) {
+						const updatedCart = state.cart.map((cartItem) => {
+							if (cartItem.id === item.id) {
+								return { ...cartItem, quantity: cartItem.quantity! - 1 }
+							}
+							return cartItem
+						})
+						return { cart: updatedCart }
+					} else {
+						//Remove item from cart
+						const filteredCart = state.cart.filter(
+							(cartItem) => cartItem.id !== item.id
+						)
+						return { cart: filteredCart }
+					}
+				}),
 		}),
 		{ name: 'cart-store' }
 	)

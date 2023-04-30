@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { AddCartType } from '@/types/AddCartType'
+import { ProductType } from '@/types/ProductType'
 import formatPrice from '@/util/PriceFormat'
 
 const Product = ({
@@ -11,7 +11,7 @@ const Product = ({
 	id,
 	description,
 	metadata,
-}: AddCartType) => {
+}: ProductType) => {
 	const { features } = metadata
 
 	return (
