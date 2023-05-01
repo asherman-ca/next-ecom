@@ -32,7 +32,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang='en'>
-			<body className={`px-48 ${roboto.className}`}>
+			<body className={`px-4 lg:px-48 ${roboto.className}`}>
 				<Hydrate>
 					<Nav user={session?.user} />
 					{children}
