@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { useCartStore } from '@/store'
 import formatPrice from '@/util/PriceFormat'
@@ -14,7 +15,10 @@ const Cart = () => {
 	}, 0)
 
 	return (
-		<div
+		<motion.div
+			animate={{ opacity: 1 }}
+			initial={{ opacity: 0 }}
+			exit={{ opacity: 0 }}
 			onClick={() => cartStore.toggleCart()}
 			className='fixed w-full h-screen left-0 top-0 bg-black/25'
 		>
@@ -23,7 +27,7 @@ const Cart = () => {
 				className='bg-white absolute	right-0 top-0 w-1/4 h-screen p-12 overflow-y-scroll text-gray-700'
 			>
 				{cartStore.cart.map((item) => (
-					<div className='flex py-4 gap-4'>
+					<motion.div layout className='flex py-4 gap-4' key={item.id}>
 						<Image
 							className='rounded-md h-24'
 							src={item.image}
@@ -56,27 +60,37 @@ const Cart = () => {
 								{item.unit_amount && formatPrice(item.unit_amount)}
 							</p>
 						</div>
-					</div>
+					</motion.div>
 				))}
 				{cartStore.cart.length > 0 && (
-					<button className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'>
+					<motion.button
+						layout
+						className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'
+					>
 						Checkout {formatPrice(totalPrice)}
-					</button>
+					</motion.button>
 				)}
-				{cartStore.cart.length === 0 && (
-					<div className='flex flex-col items-center justify-center gap-12 text-2xl font-medium opacity-75'>
-						Empty Cart
-						<Image
-							// src={'/shipping.png'}
-							src={shipping}
-							height={200}
-							width={200}
-							alt='shipping'
-						/>
-					</div>
-				)}
+				<AnimatePresence>
+					{cartStore.cart.length === 0 && (
+						<motion.div
+							className='flex flex-col items-center justify-center gap-12 text-2xl font-medium opacity-75'
+							animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
+							initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+							exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+						>
+							Empty Cart
+							<Image
+								// src={'/shipping.png'}
+								src={shipping}
+								height={200}
+								width={200}
+								alt='shipping'
+							/>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</div>
-		</div>
+		</motion.div>
 	)
 }
 
