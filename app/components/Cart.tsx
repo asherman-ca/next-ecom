@@ -9,6 +9,10 @@ import shipping from '@/public/shipping.png'
 const Cart = () => {
 	const cartStore = useCartStore()
 
+	const totalPrice = cartStore.cart.reduce((acc, item) => {
+		return acc + item.unit_amount! * item.quantity!
+	}, 0)
+
 	return (
 		<div
 			onClick={() => cartStore.toggleCart()}
@@ -56,7 +60,7 @@ const Cart = () => {
 				))}
 				{cartStore.cart.length > 0 && (
 					<button className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'>
-						Checkout
+						Checkout {formatPrice(totalPrice)}
 					</button>
 				)}
 				{cartStore.cart.length === 0 && (
