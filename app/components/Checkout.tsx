@@ -26,12 +26,14 @@ const Checkout = () => {
 		})
 			.then((res) => {
 				if (res.status === 403) {
-					router.push('/')
+					router.push('/api/auth/signin')
 				}
 				return res.json()
 			})
 			.then((res) => {
 				console.log('create payment intent response', res)
+				setClientSecret(res.paymentIntent.clientSecret)
+				cartStore.setPaymentIntent(res.paymentIntent.id)
 			})
 	}, [])
 
