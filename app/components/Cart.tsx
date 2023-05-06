@@ -7,6 +7,7 @@ import formatPrice from '@/util/PriceFormat'
 import { IoAddCircle, IoRemoveCircle } from 'react-icons/io5'
 import shipping from '@/public/shipping.png'
 import Checkout from './Checkout'
+import OrderConfirmed from './OrderConfirmed'
 
 const Cart = () => {
 	const cartStore = useCartStore()
@@ -80,10 +81,29 @@ const Cart = () => {
 								Checkout {formatPrice(totalPrice)}
 							</motion.button>
 						)}
+						<AnimatePresence>
+							{cartStore.cart.length === 0 && cartStore.isOpen ? (
+								<motion.div
+									className='flex flex-col items-center justify-center gap-12 text-2xl font-medium opacity-75'
+									animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
+									initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+									exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
+								>
+									Empty Cart
+									<Image
+										src={shipping}
+										height={200}
+										width={200}
+										alt='shipping'
+									/>
+								</motion.div>
+							) : null}
+						</AnimatePresence>
 					</>
 				)}
 				{cartStore.onCheckout === 'checkout' && <Checkout />}
-				<AnimatePresence>
+				{cartStore.onCheckout === 'success' && <OrderConfirmed />}
+				{/* <AnimatePresence>
 					{cartStore.cart.length === 0 && (
 						<motion.div
 							className='flex flex-col items-center justify-center gap-12 text-2xl font-medium opacity-75'
@@ -101,7 +121,7 @@ const Cart = () => {
 							/>
 						</motion.div>
 					)}
-				</AnimatePresence>
+				</AnimatePresence> */}
 			</div>
 		</motion.div>
 	)

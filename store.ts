@@ -12,6 +12,7 @@ type CartState = {
 	setPaymentIntent: (arg0: string) => void
 	onCheckout: string
 	setCheckout: (arg0: string) => void
+	clearCart: () => void
 }
 
 export const useCartStore = create<CartState>()(
@@ -63,6 +64,7 @@ export const useCartStore = create<CartState>()(
 			setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
 			onCheckout: 'cart',
 			setCheckout: (val) => set((state) => ({ onCheckout: val })),
+			clearCart: () => set((state) => ({ cart: [] })),
 		}),
 		{ name: 'cart-store' }
 	)

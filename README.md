@@ -39,8 +39,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Stack
 
+Framework: next 13
+
 -db: cockroachdb (supabase backup?)
 
 Prisma commands:
 npx prisma migrate dev (worse version: npx prisma db push)
 npx prisma generate
+
+Styling resources:
+tailwind
+react-icons
+giphy.com
+flaticon.com
