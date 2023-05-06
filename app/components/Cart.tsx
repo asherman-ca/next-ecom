@@ -31,7 +31,7 @@ const Cart = () => {
 					className='text-sm pb-12 font-bold'
 					onClick={() => cartStore.toggleCart()}
 				>
-					Close cart
+					X
 				</button>
 				{cartStore.onCheckout === 'cart' && (
 					<>
@@ -71,16 +71,16 @@ const Cart = () => {
 								</div>
 							</motion.div>
 						))}
+						{cartStore.cart.length > 0 && (
+							<motion.button
+								layout
+								className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'
+								onClick={() => cartStore.setCheckout('checkout')}
+							>
+								Checkout {formatPrice(totalPrice)}
+							</motion.button>
+						)}
 					</>
-				)}
-				{cartStore.cart.length > 0 && (
-					<motion.button
-						layout
-						className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'
-						onClick={() => cartStore.setCheckout('checkout')}
-					>
-						Checkout {formatPrice(totalPrice)}
-					</motion.button>
 				)}
 				{cartStore.onCheckout === 'checkout' && <Checkout />}
 				<AnimatePresence>

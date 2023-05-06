@@ -4,6 +4,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import { useCartStore } from '@/store'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import CheckoutForm from './CheckoutForm'
 
 const stripePromise = loadStripe(
 	process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -31,15 +32,34 @@ const Checkout = () => {
 				return res.json()
 			})
 			.then((res) => {
-				console.log('create payment intent response', res)
-				setClientSecret(res.paymentIntent.clientSecret)
+				setClientSecret(res.paymentIntent.client_secret)
 				cartStore.setPaymentIntent(res.paymentIntent.id)
 			})
 	}, [])
 
+	const options: StripeElementsOptions = {
+		clientSecret,
+		appearance: {
+			theme: 'stripe',
+			labels: 'floating',
+		},
+	}
+
 	return (
 		<div>
-			<h1 onClick={() => cartStore.setCheckout('cart')}>Checkout</h1>
+			<button
+				className='py-2 mb-4 bg-teal-700 w-full rounded-md text-white'
+				onClick={() => cartStore.setCheckout('cart')}
+			>
+				<h1>Back to cart 🛒</h1>
+			</button>
+			{clientSecret && (
+				<div>
+					<Elements options={options} stripe={stripePromise}>
+						<CheckoutForm clientSecret={clientSecret} />
+					</Elements>
+				</div>
+			)}
 		</div>
 	)
 }
