@@ -47,7 +47,7 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 					</li>
 				)}
 				{user && (
-					<>
+					<Link href='/dashboard'>
 						<li>
 							<Image
 								src={user?.image!}
@@ -55,10 +55,9 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 								width={36}
 								height={36}
 								className='rounded-full'
-								onClick={() => signOut()}
 							/>
 						</li>
-					</>
+					</Link>
 				)}
 				<AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
 			</ul>

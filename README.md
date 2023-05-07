@@ -52,3 +52,4 @@ tailwind
 react-icons
 giphy.com
 flaticon.com
+lottie animations
