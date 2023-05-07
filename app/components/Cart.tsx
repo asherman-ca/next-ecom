@@ -26,7 +26,7 @@ const Cart = () => {
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className='bg-white absolute	right-0 top-0 w-full lg:w-1/4 h-screen p-12 overflow-y-scroll text-gray-700'
+				className='bg-white absolute	right-0 top-0 w-full lg:w-1/4 h-screen p-12 overflow-y-scroll'
 			>
 				<button
 					className='text-sm pb-12 font-bold'
@@ -75,7 +75,7 @@ const Cart = () => {
 						{cartStore.cart.length > 0 && (
 							<motion.button
 								layout
-								className='py-2 mt-4 bg-teal-700 w-full rounded-md text-white'
+								className='mt-4  w-full btn btn-primary'
 								onClick={() => cartStore.setCheckout('checkout')}
 							>
 								Checkout {formatPrice(totalPrice)}

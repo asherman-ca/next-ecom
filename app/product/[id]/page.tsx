@@ -6,7 +6,7 @@ import AddCart from './AddCart'
 
 const page = async ({ searchParams }: SearchParamType) => {
 	return (
-		<div className='flex flex-col lg:flex-row items-center justify-between gap-24 p-12 text-gray-700'>
+		<div className='flex flex-col lg:flex-row items-center justify-between gap-24 p-12'>
 			<Image
 				src={searchParams.image}
 				alt={searchParams.name}
@@ -14,12 +14,12 @@ const page = async ({ searchParams }: SearchParamType) => {
 				width={600}
 				className='w-full'
 			/>
-			<div className='font-medium text-gray-700'>
+			<div className='font-medium'>
 				<h1 className='text-2xl py-2'>{searchParams.name}</h1>
 				<p className='py-2'>{searchParams.description}</p>
 				<p className='py-2'>{searchParams.features}</p>
 				<div className='flex gap-2'>
-					<p className='font-bold text-gray-500'>
+					<p className='font-bold text-primary'>
 						{searchParams.unit_amount && formatPrice(searchParams.unit_amount)}
 					</p>
 				</div>

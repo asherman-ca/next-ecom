@@ -4,6 +4,8 @@ import { Elements } from '@stripe/react-stripe-js'
 import { useCartStore } from '@/store'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
+
 import CheckoutForm from './CheckoutForm'
 import OrderAnimation from './OrderAnimation'
 
@@ -49,18 +51,18 @@ const Checkout = () => {
 	return (
 		<div>
 			<button
-				className='py-2 mb-4 bg-teal-700 w-full rounded-md text-white'
+				className='mb-4 btn btn-primary w-full rounded-md'
 				onClick={() => cartStore.setCheckout('cart')}
 			>
 				<h1>Back to cart 🛒</h1>
 			</button>
 			{!clientSecret && <OrderAnimation />}
 			{clientSecret && (
-				<div>
+				<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
 					<Elements options={options} stripe={stripePromise}>
 						<CheckoutForm clientSecret={clientSecret} />
 					</Elements>
-				</div>
+				</motion.div>
 			)}
 		</div>
 	)

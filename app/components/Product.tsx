@@ -21,7 +21,7 @@ const Product = ({
 				query: { name, image, unit_amount, id, description, features },
 			}}
 		>
-			<div className='text-gray-700'>
+			<div>
 				<Image
 					src={image}
 					width={800}
@@ -31,7 +31,7 @@ const Product = ({
 				/>
 				<div className='font-medium py-2'>
 					<h1>{name}</h1>
-					<h2 className='text-sm text-gray-500'>
+					<h2 className='text-sm text-primary'>
 						{unit_amount ? formatPrice(unit_amount) : '-'}
 					</h2>
 				</div>
