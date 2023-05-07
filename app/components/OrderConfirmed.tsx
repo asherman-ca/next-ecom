@@ -26,16 +26,16 @@ const OrderConfirmed = () => {
 				<Image src={cat} alt='giffy' className='py-8' />
 				<div className='flex items-center justify-center gap-12'>
 					<Link href={'/dashboard'}>
-						<button className='font-medium'>Check your order</button>
+						<button
+							onClick={() => {
+								cartStore.setCheckout('cart')
+								cartStore.toggleCart()
+							}}
+							className='font-medium'
+						>
+							Check your order
+						</button>
 					</Link>
-					<button
-						onClick={() => {
-							cartStore.setCheckout('cart')
-							cartStore.toggleCart()
-						}}
-					>
-						Create a new order
-					</button>
 				</div>
 			</div>
 		</motion.div>

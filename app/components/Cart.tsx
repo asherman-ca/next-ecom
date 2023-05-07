@@ -103,25 +103,6 @@ const Cart = () => {
 				)}
 				{cartStore.onCheckout === 'checkout' && <Checkout />}
 				{cartStore.onCheckout === 'success' && <OrderConfirmed />}
-				{/* <AnimatePresence>
-					{cartStore.cart.length === 0 && (
-						<motion.div
-							className='flex flex-col items-center justify-center gap-12 text-2xl font-medium opacity-75'
-							animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
-							initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
-							exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
-						>
-							Empty Cart
-							<Image
-								// src={'/shipping.png'}
-								src={shipping}
-								height={200}
-								width={200}
-								alt='shipping'
-							/>
-						</motion.div>
-					)}
-				</AnimatePresence> */}
 			</div>
 		</motion.div>
 	)
