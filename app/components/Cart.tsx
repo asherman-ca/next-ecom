@@ -26,7 +26,7 @@ const Cart = () => {
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
-				className='bg-white absolute	right-0 top-0 w-full lg:w-1/4 h-screen p-12 overflow-y-scroll'
+				className='bg-base-200 absolute	right-0 top-0 w-full lg:w-1/4 h-screen p-12 overflow-y-scroll'
 			>
 				<button
 					className='text-sm pb-12 font-bold'
@@ -37,7 +37,11 @@ const Cart = () => {
 				{cartStore.onCheckout === 'cart' && (
 					<>
 						{cartStore.cart.map((item) => (
-							<motion.div layout className='flex py-4 gap-4' key={item.id}>
+							<motion.div
+								layout
+								className='flex p-4 gap-4 bg-base-100 rounded-md'
+								key={item.id}
+							>
 								<Image
 									className='rounded-md h-24'
 									src={item.image}

@@ -1,7 +1,7 @@
 'use client'
 import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
-import { useCartStore } from '@/store'
+import { useCartStore, useThemeStore } from '@/store'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -40,10 +40,14 @@ const Checkout = () => {
 			})
 	}, [])
 
+	const themeStore = useThemeStore()
+
+	const theme = themeStore.mode === 'dark' ? 'night' : 'stripe'
+
 	const options: StripeElementsOptions = {
 		clientSecret,
 		appearance: {
-			theme: 'stripe',
+			theme,
 			labels: 'floating',
 		},
 	}
