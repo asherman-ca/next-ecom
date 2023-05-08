@@ -28,6 +28,7 @@ const Product = ({
 					height={800}
 					alt={name}
 					className='w-full h-96 rounded-lg'
+					priority={true}
 				/>
 				<div className='font-medium py-2'>
 					<h1>{name}</h1>

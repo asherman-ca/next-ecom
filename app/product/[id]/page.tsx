@@ -12,7 +12,8 @@ const page = async ({ searchParams }: SearchParamType) => {
 				alt={searchParams.name}
 				height={600}
 				width={600}
-				className='w-full rounded-md'
+				className='w-auto rounded-md'
+				priority={true}
 			/>
 			<div className='font-medium'>
 				<h1 className='text-2xl py-2'>{searchParams.name}</h1>
