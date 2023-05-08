@@ -47,17 +47,40 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 					</li>
 				)}
 				{user && (
-					<Link href='/dashboard'>
-						<li>
+					<li>
+						<div className='dropdown dropdown-end cursor-pointer'>
 							<Image
 								src={user?.image!}
 								alt={user?.name!}
 								width={36}
 								height={36}
 								className='rounded-full'
+								tabIndex={0}
 							/>
-						</li>
-					</Link>
+							<ul
+								className='dropdown-content menu p-4 space-y-4 shadow bg-base-100 rounded-box w-40'
+								tabIndex={0}
+							>
+								<Link
+									className='hover:bg-base-300 p-4 rounded-md cursor-pointer'
+									href={'/dashboard'}
+									onClick={() => {
+										if (document.activeElement instanceof HTMLElement) {
+											document.activeElement.blur()
+										}
+									}}
+								>
+									Orders
+								</Link>
+								<li
+									className='hover:bg-base-300 p-4 rounded-md cursor-pointer'
+									onClick={() => signOut()}
+								>
+									Sign out
+								</li>
+							</ul>
+						</div>
+					</li>
 				)}
 				<AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
 			</ul>
