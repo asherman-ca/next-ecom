@@ -47,8 +47,13 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 				</li>
 
 				{!user && (
-					<li className='bg-primary py-2 px-4 rounded-md'>
-						<button onClick={() => signIn('google')}>Sign In</button>
+					<li className='py-2 px-4 rounded-md'>
+						<button
+							className='btn btn-primary'
+							onClick={() => signIn('google')}
+						>
+							Sign In
+						</button>
 					</li>
 				)}
 				{user && (
