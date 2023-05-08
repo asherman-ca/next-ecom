@@ -10,6 +10,11 @@ module.exports = {
 			gridTemplateColumns: {
 				fluid: 'repeat(auto-fit, minmax(20rem, 1fr))',
 			},
+			fontFamily: {
+				roboto: ['var(--font-roboto)'],
+				lobster: ['var(--font-lobster)'],
+				cabin: ['var(--font-cabin)'],
+			},
 		},
 	},
 	plugins: [require('daisyui')],

@@ -21,7 +21,7 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 	return (
 		<nav className='flex justify-between items-center py-12'>
 			<Link href='/'>
-				<h1>Next-Ecom</h1>
+				<h1 className='text-2xl font-bold font-cabin'>Next-Ecom</h1>
 			</Link>
 			<ul className='flex items-center gap-8'>
 				<li>
