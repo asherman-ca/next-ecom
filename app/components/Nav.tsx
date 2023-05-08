@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import Cart from './Cart'
 import { useCartStore } from '@/store'
+import DarkLight from './DarkLight'
 
 type userType = {
 	name?: string | null | undefined
@@ -22,7 +23,10 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 			<Link href='/'>
 				<h1>Next-Ecom</h1>
 			</Link>
-			<ul className='flex items-center gap-12'>
+			<ul className='flex items-center gap-8'>
+				<li>
+					<DarkLight />
+				</li>
 				<li
 					onClick={() => cartStore.toggleCart()}
 					className='flex items-center relative text-3xl cursor-pointer'
@@ -41,6 +45,7 @@ const Nav = ({ user }: { user: userType | undefined }) => {
 						)}
 					</AnimatePresence>
 				</li>
+
 				{!user && (
 					<li className='bg-primary py-2 px-4 rounded-md'>
 						<button onClick={() => signIn('google')}>Sign In</button>
